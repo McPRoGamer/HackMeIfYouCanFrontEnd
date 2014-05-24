@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-
-
 <html lang="pl-PL">
-	<head>
-		<title>Lorem ipsum</title>
-	</head>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+	<link type="text/css" href="index.css" rel="stylesheet"/>
+	<script src="jquery-1.10.2.js"></script>
+	<title>Save notes</title>
+</head>
 
-	<body>
-		<header id="page_header">
-			<h1>Lorem Ipsum</h1>
-		</header>
-		<section id="rightNav">
-			<header>
-			<h3>O autorze</h3>
-			</header>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet arcu vel arcu feugiat lacinia. Etiam eu faucibus augue, at fermentum orci. Sed aliquet blandit lacus, et commodo massa porta ut. Mauris feugiat convallis justo non pellentesque. Etiam augue lacus, porta a orci et, porta aliquam nulla. Etiam ligula ipsum, aliquam ut erat non, euismod consectetur sem. Duis volutpat interdum dolor, eget blandit justo aliquam non. Vestibulum eu nisi facilisis, iaculis sapien at, ullamcorper nisi. Nam sit amet felis est. Donec volutpat ante eget nisi commodo, sit amet auctor ipsum imperdiet.</p>
-		</section>
-		<section id="mainContent">
-			<article>
-				<header>Przykładowa stronka z polskimi znakami :P ę€ółśążźćń </header>
-			</article>
-		</section>
+<body>
+	<section name="body" id="body">
+		<h3><p>Logowanie</p></h3>
+		<p>
+			<ul id="activ">
+				<li><span class="error" id="login_err"><input type="text" id="login" /></span></li>
+				<li><span class="error" id="password_err"><input type="password" id="password" /></span></li>
+			    <li><input type="button" id="users" value="Zaloguj"/></li>
+			</ul>
+		</p>
+	</section>	
+	<script src="script.js"></script>
+</body>
 </html>
+
