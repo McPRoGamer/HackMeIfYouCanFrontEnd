@@ -17,9 +17,10 @@ function replaceAll( string ){
 function check(){
 	var login = get('login').value;
 	login = replaceAll(login);
-	
+
 	var passwd = get('password').value;
 	passwd = replaceAll(passwd);
+
 	if( login.indexOf(" ") > -1){
 		dodajInfo("Login nie może zawierać spacji.", 'login_err', 'login_msg');
 	} else if( login.length < 4) {
