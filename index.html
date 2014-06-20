@@ -3,23 +3,27 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 	<link type="text/css" href="index.css" rel="stylesheet"/>
-	<script src="jquery-1.10.2.js"></script>
+	<script src="scripts/jquery-1.10.2.js"></script>
 	<title>Save notes</title>
 </head>
 
 <body>
-	<section name="body" id="body">
+	<section name="intro" id="intro">
+		<h2>Witaj na stronie, której się nie da złamać. Wszystkie dane są tak chronione, że nikt nie wie jak to wszystko działa</h2>
+		<p>Jeśli chcesz się zarejestrować, kliknij <a href="register.html">TU</a></p>
+	</section>
+	<section name="login" id="body">
 		<h3><p>Logowanie</p></h3>
 		<p>
 			<ul id="activ">
 				<li><span class="error" id="login_err"><input type="text" id="login" /></span></li>
 				<li><span class="error" id="password_err"><input type="password" id="password" /></span></li>
-				<li>Siła hasła <meter id="meter" value="0" min="0" max="5" optimum="70">50 (0...100)</meter></li>
+				<!-- <li>Siła hasła <meter id="meter" value="0" min="0" max="5" optimum="70">50 (0...100)</meter></li> -->
 			    <li><input type="button" id="submit" value="Zaloguj"/></li>
 			</ul>
 		</p>
 	</section>	
-	<script src="script.js"></script>
+	<script src="scripts/login.js"></script>
 </body>
 </html>
 

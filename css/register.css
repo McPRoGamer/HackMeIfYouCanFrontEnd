@@ -1,0 +1,11 @@
+li label, li input {
+  display: inline-block;
+}
+li label {
+  min-width: 100px;
+}
+
+ul
+{
+    list-style-type: none;
+}

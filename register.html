@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+	<link type="text/css" href="css/register.css" rel="stylesheet"/>
+	<script src="scripts/jquery-1.10.2.js"></script>
+	<title>Safe notes</title>
+</head>
+
+<body>
+	<section name="body" id="body">
+		<h3><p>Rejestracja</p></h3>
+		<p>
+			<ul id="activ">
+				<li><label>Login:</label><span class="error" id="login_err"><input type="text" id="login" /></span></li>
+				<li><label>Hasło:</label><span class="error" id="password_err"><input type="password" id="password" /></span> Siła hasła <meter id="meter" value="0" min="0" max="5" optimum="70">50 (0...100)</meter></li>
+				<li><label>Powtórz hasło:</label><input type="password" id="password2"/></li>
+				<li><span class="error" id="email_err"><label>E-mail:</label><input type="email" id="email"/></span></li>
+				<li><span class="error" id="name_err"><label>Imię:</label><input type="text" id="name"/></span></li>
+				<li><span class="error" id="surname_err"><label>Nazwisko:</label><input type="text" id="surname"/></span></li>
+			    <li><input type="button" id="register" value="Rejestracja"/></li>
+			</ul>
+		</p>
+	</section>	
+	<script src="scripts/register.js"></script>
+</body>
+</html>
+
