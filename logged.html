@@ -9,10 +9,33 @@
 
 <body>
 	<section name="intro" id="intro">
-		<h2>Witaj na stronie, której siê nie da z³amaæ. Wszystkie dane s¹ tak chronione, ¿e nikt nie wie jak to wszystko dzia³a</h2>
+		<h2>Witaj na stronie, ktÃ³rej siÄ™ nie da zÅ‚amaÄ‡/ Wszystkie dane sÄ… tak chronione, Å¼e nikt nie wie jak to wszystko dziaÅ‚a</h2>
 	</section>
-	
+	<section id="img">
+		<h3>To jest sekcja plikÃ³w</h3>
+		<form enctype="multipart/form-data" method="post" id="img_form">
+			<p>Plik: <input type="file" name="file" id="file"></p>
+			<p><input type="submit" value="Upload" id="upload"></p>
+		</form>
+	</section>
+	<section id="notes">
+		<h3>To jest sekcja notatek:</h3>
+		<ul>
+		<li><input type="button" id="show_all_notes" value="PokaÅ¼ wszyskie notatki" onclick="return getAllNotes()"/></li>
+		<li><input type="button" id="add_note" value="Dodaj notatkÄ™" onclick="return addNote()"/></li>
+	</section>
+	<section id="body">
+		<div class="table" id="notestable">
+		<h1 id="tabtitle"></h1>
+		<table border=1>
+			<thead>
+				
+			</thead>
+			<tbody>	
+			</tbody>
+		</table>
+	</div>
+	</section>
 	<script src="scripts/logged.js"></script>
 </body>
 </html>
-

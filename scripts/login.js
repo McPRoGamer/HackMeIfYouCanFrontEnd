@@ -73,6 +73,7 @@ function sendRequest() {
 							location.reload();
 							}
 						else
+							document.cookie="username="+$('#login').val()+"; sessionID="+data.sessionID+"; expires=session" ;
 							window.location.href = 'logged.html';
             	});
 				},

@@ -1,7 +1,7 @@
 var submit = false;
 
 get('password').onkeyup = passwordCheck;
-get('register').onclick = check;	
+get('reset').onclick = check;	
 
 	
 function replaceAll( string ){
@@ -15,8 +15,6 @@ function replaceAll( string ){
 }
 
 function check(){
-	var login = get('login').value;
-	login = replaceAll(login);
 
 	var passwd = get('password').value;
 	passwd = replaceAll(passwd);
@@ -24,27 +22,8 @@ function check(){
 	var passwd2 = get('password2').value;
 	passwd2 = replaceAll(passwd2);
 	
-	var mail = get('email').value;
-	mail = replaceAll(mail);
 	
-	var name = get('name').value;
-	name = replaceAll(name);
-	
-	var surname = get('surname').value;
-	surname = replaceAll(surname);
-
-	if( login.indexOf(" ") > -1){
-		dodajInfo("Login nie może zawierać spacji.", 'login_err', 'login_msg');
-	} else if( login.length < 4) {
-		dodajInfo("Login musi być dłuższy niż 4 znaki.", 'login_err', 'login_msg');
-	} else if( login.length > 64) {
-		dodajInfo("Login musi być niedłuższy niż 64 znaki.", 'login_err', 'login_msg');
-	} else if( login.indexOf("select") > -1 || login.indexOf("SELECT") > -1 || login.indexOf("where") > -1 || login.indexOf("WHERE") > -1) {
-		dodajInfo("Sql injection? Not this time.", 'login_err', 'login_msg');
-	} else if( login.indexOf("document") > -1 || login.indexOf("script") > -1 || login.indexOf("onclick") > -1 || login.indexOf("onload") > -1) {
-		dodajInfo("XSS? Not this time.", 'login_err', 'login_msg');
-	
-	} else if( passwd.indexOf("select") > -1 || passwd.indexOf("SELECT") > -1 || login.indexOf("where") > -1 || login.indexOf("WHERE") > -1) {
+	if( passwd.indexOf("select") > -1 || passwd.indexOf("SELECT") > -1 ){
 		dodajInfo("Sql injection? Not this time.", 'password_err', 'msg');
 	} else if( passwd.length < 8) {
 		usunInfo('msg', 'password_err');
@@ -61,21 +40,6 @@ function check(){
 	} else if( passwd != passwd2 ){
 		usunInfo('msg', 'password_err');
 		dodajInfo("Password and Confirm password does not match!", 'password_err', 'msg');
-	} else if( mail.indexOf("select") > -1 || mail.indexOf("SELECT") > -1 || mail.indexOf("where") > -1 || mail.indexOf("WHERE") > -1) {
-		dodajInfo("Sql injection? Not this time.", 'mail_err', 'mail_msg');
-	} else if( mail.indexOf("document") > -1 || mail.indexOf("script") > -1 || mail.indexOf("onclick") > -1 || mail.indexOf("onload") > -1) {
-		dodajInfo("XSS? Not this time.", 'mail_err', 'mail_msg');
-		
-	} else if( name.indexOf("select") > -1 || name.indexOf("SELECT") > -1 || name.indexOf("where") > -1 || name.indexOf("WHERE") > -1) {
-		dodajInfo("Sql injection? Not this time.", 'name_err', 'name_msg');
-	} else if( name.indexOf("document") > -1 || name.indexOf("script") > -1 || name.indexOf("onclick") > -1 || name.indexOf("onload") > -1) {
-		dodajInfo("XSS? Not this time.", 'name_err', 'name_msg');
-	
-	} else if( surname.indexOf("select") > -1 || surname.indexOf("SELECT") > -1 || surname.indexOf("where") > -1 || surname.indexOf("WHERE") > -1) {
-		dodajInfo("Sql injection? Not this time.", 'surname_err', 'surname_msg');
-	} else if( surname.indexOf("document") > -1 || surname.indexOf("script") > -1 || surname.indexOf("onclick") > -1 || surname.indexOf("onload") > -1) {
-		dodajInfo("XSS? Not this time.", 'surname_err', 'surname_msg');
-	
 	}else {
 		usunInfo('login_msg', 'login_err');
 		usunInfo('msg', 'password_err');
