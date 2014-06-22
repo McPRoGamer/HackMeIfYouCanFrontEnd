@@ -88,7 +88,7 @@ function sendRequest() {
 			crossDomain: true,
 			processData: true,
 	     	success: function(data) {
-					
+						
 						if(data.logged == false){
 							alert("Błędny login i/lub hasło");
 							location.reload();

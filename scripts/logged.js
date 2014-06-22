@@ -1,5 +1,9 @@
-get('img_form').onsubmit = uploadImage;
+login = getCookie("username");
+
+//get('upload').onsubmit = uploadImage;
 get('logout').onclick = logout;
+// get('file_form').action= "https://volt.iem.pw.edu.pl:7777/upload/"+login
+
 
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
@@ -15,7 +19,7 @@ function getCookie(c_name) {
     }
     return "";
 }
-login = getCookie("username");
+
 
 function getAllNotes(){
     $('#notestable tbody').html('');
@@ -51,24 +55,51 @@ function addNote() {
 	window.open('new_note.html','Nowa notatka', 'width=1000, height=600');
 }
 
-function uploadImage(){
-	var img = get('file')
-	var myBase64EncodedData  = getBase64Image(img);
-		$.ajax({
-			type: 'POST',
-			url: 'https://volt.iem.pw.edu.pl:7777/photo',
-			data: { 
-				'imagedata': myBase64EncodedData 
-			},
-			success: function(msg){
-				console.log('posted' + msg);
-			}
-		});
-}
+// function uploadImage(){
+	// var img = get('file')
+	// var myBase64EncodedData  = getBase64Image(img);
+	// var data = "{ \"data\" : \""+myBase64EncodedData+"\"}";
+	// debugger;
+		// $.ajax({
+			// type: 'POST',
+			// url: 'https://volt.iem.pw.edu.pl:7777/file',
+			// data: data,
+			// dataType: 'json',
+			// success: function(msg){
+				// console.log('posted' + msg);
+			// }
+		// });
+// }
 
+// function  uploadImage() {
+    // var formData = new FormData();
+    // var target = 'https://volt.iem.pw.edu.pl:7777/file'
+    // formData.append("file", document.getElementById("file").files[0]);
+    // var xhr = new XMLHttpRequest();
+    // var eventSource = xhr.upload || xhr;
+    // eventSource.addEventListener("progress", function(e){
+        // var current = e.loaded || e.position ;
+        // var total = e.total || e.totalSize;
+        // var percant = parseInt((current/total)*100, 10);
+        // // DO whatever you want with progress
+    // });
+    // xhr.open("POST", target, true);
+    // xhr.send(formData);
+    // xhr.onload = function() {
+        // if (this.status === 200)
+			// alert("success");
+            // // SUCCESS
+    // };
+// }
+
+ 
+function uploadImage(){
+            
+         }
+		 
+		 
 function logout(){
 		var data = "{ \"sessionID\" : \""+getCookie('sessionID')+"\"}";
-		alert(data);
 		$.ajax({
 			type: 'POST',
 			url: 'https://volt.iem.pw.edu.pl:7777/logout',
@@ -76,7 +107,6 @@ function logout(){
 			dataType: 'json',
 			success: function(msg){
 				//console.log('posted' + msg);
-				debugger;
 				if (msg.result == false){
 					alert("Taka sesja nie istnieje, popsułeś ciasteczko....");
 				}
