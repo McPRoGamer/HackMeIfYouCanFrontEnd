@@ -48,30 +48,27 @@ function check(){
 }
 
 function sendRequest() {
-	
-	var data = "{ \"login\" : \""+$('#login').val()+"\", \"password\": \""+$('#password').val()+"\", \"email\": \""+$('#email').val()+"\", \"name\": \""+$('#name').val()+"\", \"surname\": \""+$('#surname').val()+"\"}";
+	var login = location.search.split("?")[1].split(";")[0];
+	var data = "{ \"login\" : \""+login+"\", \"password\": \""+$('#password').val()+"\"}";
 	
 	$.ajax({
-            url: 'https://volt.iem.pw.edu.pl:7777/register',
+            url: 'https://volt.iem.pw.edu.pl:7777/reset/',
             type: 'POST',
 			data: data,
 			dataType: 'json',
-			cache: false,
-			crossDomain: true,
-			processData: true,
-	     	success: function(data) {
-					$.each(data, function( ) {		
-						if(data.registred == false){
-							alert("Takie konto juz istnieje!");
-							location.reload();
+			success: function(data) {
+							
+						if(data.result != true){
+							alert(data.result);
+							window.location.replace("index.html")
 							}
 						else
 							window.location.href = 'index.html';
 						
-            	});
+            	
 				},
 				error: function( data ) {
-				alert(data);
+				alert("Internal server error");
 				}
     		});
 }

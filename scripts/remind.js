@@ -15,44 +15,40 @@ function replaceAll( string ){
 
 function check(){
 	
-	var mail = get('email').value;
-	mail = replaceAll(mail);
-	if (mail.length == 0 || mail.indexOf("@") == -1){
-		dodajInfo("Podaj poprawny adres e-mail", 'mail_err', 'mail_msg');
-	} else if( mail.indexOf("select") > -1 || mail.indexOf("SELECT") > -1 || mail.indexOf("where") > -1 || mail.indexOf("WHERE") > -1) {
-		dodajInfo("Sql injection? Not this time.", 'mail_err', 'mail_msg');
-	} else if( mail.indexOf("document") > -1 || mail.indexOf("script") > -1 || mail.indexOf("onclick") > -1 || mail.indexOf("onload") > -1) {
-		dodajInfo("XSS? Not this time.", 'mail_err', 'mail_msg');
+	var login = get('login').value;
+	login = replaceAll(login);
+	if (login.length == 0){
+		dodajInfo("Podaj poprawny login", 'login_err', 'login_msg');
+	} else if( login.indexOf("select") > -1 || login.indexOf("SELECT") > -1 || login.indexOf("where") > -1 || login.indexOf("WHERE") > -1) {
+		dodajInfo("Sql injection? Not this time.", 'login_err', 'login_msg');
+	} else if( login.indexOf("document") > -1 || login.indexOf("script") > -1 || login.indexOf("onclick") > -1 || login.indexOf("onload") > -1) {
+		dodajInfo("XSS? Not this time.", 'login_err', 'login_msg');
 	
 	}else {
-		usunInfo('mail_msg', 'mail_err');
+		usunInfo('login_msg', 'login_err');
 		sendRequest();
 	}
 }
 
 function sendRequest() {
 	
-	var data = "{ \"email\": \""+$('#email').val()+"\"}";
-	
+	//var data = "{ \"login\": \""+$('#login').val()+"\"}";
+	var login = $('#login').val()
 	$.ajax({
-            url: 'https://volt.iem.pw.edu.pl:7777/register',
-            type: 'POST',
-			data: data,
+            url: 'https://volt.iem.pw.edu.pl:7777/reset/'+login,
+            type: 'GET',
 			dataType: 'json',
-			cache: false,
-			crossDomain: true,
-			processData: true,
-	     	success: function(data) {
-					$.each(data, function( ) {		
-						if(data.error == false){
+			success: function(data) {
+						if(data.error == "false"){
 							alert("Takie konto nie istnieje!");
 							location.reload();
 							}
-						else
-							//window.location.href = 'index.html';
-							get('intro').innerHTML = "<h2>Na teÛj adres e-mail zosta≥ wys≥any link do zmiany has≥a. Przejdü ndo swojej poczty i postÍpuj zgodnie z informacjami w wiadomoúci</h2>";
-						
-            	});
+						else{
+							//;
+							get('intro').innerHTML = "<h2>Na tw√≥j adres e-mail zosta≈Ç wys≈Çany link do zmiany has≈Ça. Przejd≈∫ do swojej poczty i postƒôpuj zgodnie z informacjami w wiadomo≈õci</h2>";
+							setTimeout(function(){window.location.href = 'index.html'}, 5000);
+						}
+            	
 				},
 				error: function( data ) {
 				alert(data);

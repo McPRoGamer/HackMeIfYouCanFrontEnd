@@ -56,6 +56,27 @@ function check(){
 	}
 }
 
+window.onload=function(){
+	var data = "{ \"sessionID\" : \""+getCookie('sessionID')+"\"}";
+	$.ajax({
+			type: 'POST',
+			url: 'https://volt.iem.pw.edu.pl:7777/islogged',
+			data: data,
+			dataType: 'json',
+			success: function(msg){
+				
+				//console.log('posted' + msg);
+				if (msg.logged == true){
+					window.location.href = 'logged.html';
+					
+				}
+			},
+			error: function( data ) {
+				alert("Internal server error");
+			}
+		});
+};
+
 function sendRequest() {
 	var data = "{ \"login\" : \""+$('#login').val()+"\", \"password\": \""+$('#password').val()+"\"}";
 	$.ajax({
@@ -67,16 +88,17 @@ function sendRequest() {
 			crossDomain: true,
 			processData: true,
 	     	success: function(data) {
-					$.each(data, function( ) {
+					
 						if(data.logged == false){
 							alert("Błędny login i/lub hasło");
 							location.reload();
 							}
-						else
-							document.cookie="username="+$('#login').val()+"; sessionID="+data.sessionID+"; expires=session" ;
+						else{
+							document.cookie="username="+data.login ;
+							document.cookie="sessionID="+data.sessionID ;
 							window.location.href = 'logged.html';
-            	});
-				},
+						}
+            },
 				error: function( data ) {
 				alert("Internal server error");
 				}
@@ -103,6 +125,21 @@ function usunInfo(idchild, idparent) {
         var cn = get(idchild);
         pn.removeChild(cn);
     }
+}
+
+function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
 }
 
 function get(id) {

@@ -1,4 +1,6 @@
 get('img_form').onsubmit = uploadImage;
+get('logout').onclick = logout;
+
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
         c_start = document.cookie.indexOf(c_name + "=");
@@ -24,6 +26,12 @@ function getAllNotes(){
             type: 'GET',
             dataType: 'json',
 			statusCode: {
+			404: function(xhr) {
+				alert('Twoja sesja wygasła');
+				delete_cookie("username");
+				delete_cookie("sessionID");
+				window.location.href = '/';
+			},
 			500: function(xhr) {
 				alert(xhr.responseText);
 			}
@@ -56,6 +64,59 @@ function uploadImage(){
 				console.log('posted' + msg);
 			}
 		});
+}
+
+function logout(){
+		var data = "{ \"sessionID\" : \""+getCookie('sessionID')+"\"}";
+		alert(data);
+		$.ajax({
+			type: 'POST',
+			url: 'https://volt.iem.pw.edu.pl:7777/logout',
+			data: data,
+			dataType: 'json',
+			success: function(msg){
+				//console.log('posted' + msg);
+				debugger;
+				if (msg.result == false){
+					alert("Taka sesja nie istnieje, popsułeś ciasteczko....");
+				}
+				delete_cookie("username");
+				delete_cookie("sessionID");
+				window.location.href = '/';
+				
+			},
+			error: function( data ) {
+				alert("Internal server error");
+			}
+		});
+	delete_cookie("username");
+	delete_cookie("sessionID");
+	
+}
+
+window.onload=function(){
+	var data = "{ \"sessionID\" : \""+getCookie('sessionID')+"\"}";
+	$.ajax({
+			type: 'POST',
+			url: 'https://volt.iem.pw.edu.pl:7777/islogged',
+			data: data,
+			dataType: 'json',
+			success: function(msg){
+				//console.log('posted' + msg);
+				if (msg.logged == false){
+					delete_cookie("username");
+					delete_cookie("sessionID");
+					window.location.href = '/';
+				}
+			},
+			error: function( data ) {
+				alert("Internal server error");
+			}
+		});
+};
+
+function delete_cookie( name ) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function get(id) {
